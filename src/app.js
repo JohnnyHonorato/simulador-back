@@ -1,9 +1,7 @@
 'use strict';
 
 const express = require('express');
-let config = require('../default');
 const bodyParser = require('body-parser');
-let sequelize = require('../config/bd-connection');
 const datasource = require('../config/bd-connection');
 
 let app = express();
@@ -14,7 +12,7 @@ const indexRoutes = require('./routes/index-route');
 const mockupRoutes = require('./routes/mockup-route');
 
 app.datasource = datasource(app);//instancia do banco sincronizado
-const mockups = app.datasource.models.Mockup;
+// const mockups = app.datasource.models.Mockup;;
 
 app.route('/mockups')
   .get((req, res) => {
