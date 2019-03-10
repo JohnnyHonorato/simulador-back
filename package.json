@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon bin/server.js"
+    "start": "nodemon bin/server.js",
+    "build": "babel src -d dist --presets es2015",
+    "watch": "babel src -w -d dist --presets es2015"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,8 @@
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "http": "0.0.0",
+    "pg": "^7.8.2",
+    "pg-hstore": "^2.3.2",
     "sequelize": "^4.43.0",
     "sqlite3": "^4.0.6"
   },
