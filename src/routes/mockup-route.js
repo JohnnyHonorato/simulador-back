@@ -1,11 +1,16 @@
 'use strict';
 
-const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/mockup-controllers');
+import MockupController from '../controllers/mockup-controllers'
 
-router.post('/', controller.post);
-router.put('/:id', controller.put);
-router.delete('/', controller.delete);
+export default (app) => {
+    const mockupController = new MockupController(app.datasource.models.Mockup);
+    app.route('/mockups')
 
-module.exports = router;
+    .get((req, res) => {
+        mockupController.getAll()
+        .then(response => {
+            res.json(response.data)
+        });
+    });
+    
+};

@@ -1,29 +1,26 @@
 'use strict';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const sequelize = require('../config/bd-connection');
+import express from 'express'
+import bodyParser from 'body-parser'
+import datasource from'../config/bd-connection'
+import config from '../config/config'
 
 const app = express();
+app.config = config;
+app.datasource = datasource(app);
 const router = express.Router();
+app.set('port', 3000);
 
 // Carrega as Rotas
-const indexRoutes = require('./routes/index-route');
-const mockupRoutes = require('./routes/mockup-route');
+import indexRoutes from './routes/index-route'
+import MockupRoutes from './routes/mockup-route'
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', indexRoutes);
-app.use('/mockups', mockupRoutes);
+// app.use('/', indexRoutes);
+// app.use('/mockups', mockupRoutes);
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+MockupRoutes(app);
 
-module.exports = app;
+export default app;

@@ -1,17 +1,25 @@
 'use strict';
+import HttpStatus from 'http-status';
 
-exports.post = (req, res, next) => {
-    res.status(200).send(req.body);
-};
+const defaultResponse = (data, statusCode = HttpStatus.OK) => ({
+  data,
+  statusCode,
+});
 
-exports.put = (req, res, next) => {
-    const id = req.params.id;
-    res.status(201).send({
-        id: id,
-        item: req.body
-    });
-};
+const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultResponse({
+    error: message,
+  }, statusCode);
 
-exports.delete = (req, res, next) => {
-    res.status(200).send(req.body);
-};
+class MockupController {
+    constructor(Mockup) {
+        this.Mockup = Mockup;
+    }
+
+    getAll() {
+        return this.Mockup.findAll({})
+        .then(result => defaultResponse(result))
+        .catch(error => errorResponse(error.message));
+    }
+}
+
+export default MockupController;
