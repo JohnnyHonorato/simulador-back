@@ -1,5 +1,6 @@
 'use strict';
 import HttpStatus from 'http-status';
+import db from '../models/index';
 
 const defaultResponse = (data, statusCode = HttpStatus.OK) => ({
   data,
@@ -12,7 +13,7 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
 
 class MockupController {
   constructor(Mockup) {
-    this.Mockup = Mockup;
+    this.Mockup = db.Mockup;
   }
 
   getAll() {
