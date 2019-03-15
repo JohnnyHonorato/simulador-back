@@ -1,6 +1,4 @@
 import Sequelize from 'sequelize';
-import fs from 'fs';
-import path from 'path';
 import db from '../src/models/index'
 
 let database = null;
@@ -16,7 +14,7 @@ export default function (app) {
       models: {},
     };
 
-    sequelize.sync().done(() => database);
+    // sequelize.sync().done(() => database);
     }
     return database;
   }
