@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   
   Shirt.associate = function (models) {
-    Shirt.belongsToMany(models.Uniforme, {
+    Shirt.belongsToMany(models.Uniform, {
       foreignKey: 'id',
       constraints: false,
       through: 'Shirt_uniforme'

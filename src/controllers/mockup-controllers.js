@@ -12,7 +12,7 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
 }, statusCode);
 
 class MockupController {
-  constructor(Mockup) {
+  constructor() {
     this.Mockup = db.Mockup;
   }
 
@@ -29,10 +29,19 @@ class MockupController {
       .then(result => defaultResponse(result))
       .catch(error => errorResponse(error.message));
   }
+
   add(data) {
     return this.Mockup.create(data)
       .then(result => defaultResponse(result, HttpStatus.CREATED))
       .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
+  }
+
+  delete(params) {
+    return this.Mockup.destroy({
+      where: params,
+    })
+    .then(result => defaultResponse(result, HttpStatus.NO_CONTENT))
+    .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
   }
 }
 

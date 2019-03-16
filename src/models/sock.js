@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {});
   Sock.associate = function(models) {
-    Sock.belongsToMany(models.Uniforme, {
+    Sock.belongsToMany(models.Uniform, {
       foreignKey: 'id',
       constraints: false,
       through: 'Sock_uniforme'

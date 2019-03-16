@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Mockup.associate = function(models) {
     // associations can be defined here
-    Mockup.belongsToMany(models.Uniforme, {
+    Mockup.belongsToMany(models.Uniform, {
       foreignKey: 'id',
       constraints: false,
       through: 'mockup_uniforme'

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Short.associate = function(models) {
     // associations can be defined here
-    Short.belongsToMany(models.Uniforme, {
+    Short.belongsToMany(models.Uniform, {
       foreignKey: 'id',
       constraints: false,
       through: 'Short_uniforme'
