@@ -3,12 +3,12 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addColumn(
-      'Uniformes', // name of Source model
-      'camisa_id', // name of the key we're adding 
+      'Uniforms', // name of Source model
+      'shirt_id', // name of the key we're adding 
       {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Camisas', // name of Target model
+          model: 'Shirts', // name of Target model
           key: 'id', // key in Target model that we're referencing
         },
         onUpdate: 'CASCADE',
@@ -16,12 +16,12 @@ module.exports = {
       })
       .then(() => {
         return queryInterface.addColumn(
-          'Uniformes', // name of Target model
-          'meia_id', // name of the key we're adding
+          'Uniforms', // name of Target model
+          'Sock_id', // name of the key we're adding
           {
             type: Sequelize.INTEGER,
             references: {
-              model: 'Meia', // name of Source model
+              model: 'Socks', // name of Source model
               key: 'id',
             },
             onUpdate: 'CASCADE',
@@ -31,7 +31,7 @@ module.exports = {
       })
       .then(() => {
         return queryInterface.addColumn(
-          'Uniformes', // name of Target model
+          'Uniforms', // name of Target model
           'mockup_id', // name of the key we're adding
           {
             type: Sequelize.INTEGER,
@@ -46,12 +46,12 @@ module.exports = {
       })
       .then(() => {
         return queryInterface.addColumn(
-          'Uniformes', // name of Target model
-          'calcao_id', // name of the key we're adding
+          'Uniforms', // name of Target model
+          'short_id', // name of the key we're adding
           {
             type: Sequelize.INTEGER,
             references: {
-              model: 'Calcaos', // name of Source model
+              model: 'Shorts', // name of Source model
               key: 'id',
             },
             onUpdate: 'CASCADE',
@@ -63,27 +63,27 @@ module.exports = {
 
 down: (queryInterface, Sequelize) => {
   return queryInterface.removeColumn(
-    'Uniformes', // name of Target model
-    'calcao_id' // key we want to remove
+    'Uniforms', // name of Target model
+    'short_id' // key we want to remove
   )
   .then(() => {
     // remove Payment hasOne Order
     return queryInterface.removeColumn(
-      'Uniformes', // name of the Target model
-      'calcao_id' // key we want to remove
+      'Uniforms', // name of the Target model
+      'short_id' // key we want to remove
     );
   })
   .then(() => {
     // remove Payment hasOne Order
     return queryInterface.removeColumn(
-      'Uniformes', // name of the Target model
-      'meia_id' // key we want to remove
+      'Uniforms', // name of the Target model
+      'sock_id' // key we want to remove
     );
   })
   .then(() => {
     // remove Payment hasOne Order
     return queryInterface.removeColumn(
-      'Uniformes', // name of the Target model
+      'Uniforms', // name of the Target model
       'mockup_id' // key we want to remove
     );
   })

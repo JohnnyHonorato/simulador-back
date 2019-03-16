@@ -1,14 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Meia = sequelize.define('Meia', {
+  const Sock = sequelize.define('Sock', {
     description: DataTypes.STRING
   }, {});
-  Meia.associate = function(models) {
-    Meia.belongsToMany(models.Uniforme, {
+  Sock.associate = function(models) {
+    Sock.belongsToMany(models.Uniforme, {
       foreignKey: 'id',
       constraints: false,
-      through: 'meia_uniforme'
+      through: 'Sock_uniforme'
     });
   };
-  return Meia;
+  return Sock;
 };

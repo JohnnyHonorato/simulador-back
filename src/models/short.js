@@ -1,15 +1,16 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
-  const Calcao = sequelize.define('Calcao', {
+  const Short = sequelize.define('Short', {
     description: DataTypes.STRING
   }, {});
-  Calcao.associate = function(models) {
+  Short.associate = function(models) {
     // associations can be defined here
-    Calcao.belongsToMany(models.Uniforme, {
+    Short.belongsToMany(models.Uniforme, {
       foreignKey: 'id',
       constraints: false,
-      through: 'calcao_uniforme'
+      through: 'Short_uniforme'
     });
   };
-  return Calcao;
+  return Short;
 };
