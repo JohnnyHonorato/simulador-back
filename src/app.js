@@ -14,6 +14,7 @@ app.set('port', 3000);
 // Carrega as Rotas
 import indexRoutes from './routes/index-route'
 import MockupRoutes from './routes/mockup-route'
+import SockRoutes from './routes/sock-route'
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,5 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use('/mockups', mockupRoutes);
 
 MockupRoutes(app);
+SockRoutes(app);
 
 export default app;
