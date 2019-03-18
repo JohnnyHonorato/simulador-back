@@ -3,7 +3,16 @@
 module.exports = (sequelize, DataTypes) => {
 
   const Uniform = sequelize.define('Uniform', {
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    mockup_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Mockups', // name of Source model
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+    }
   }, {});
 
   Uniform.associate = function (models) {
