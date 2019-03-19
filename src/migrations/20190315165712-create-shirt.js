@@ -11,6 +11,15 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      sport: {
+        type: Sequelize.STRING
+      },
+      color: {
+        type: Sequelize.STRING
+      },
+      svg: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

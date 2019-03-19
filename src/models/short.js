@@ -2,7 +2,16 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Short = sequelize.define('Short', {
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    sport: {
+      type: DataTypes.STRING
+    },
+    color: {
+      type: DataTypes.STRING
+    },
+    svg: {
+      type: DataTypes.STRING
+    }
   }, {});
   Short.associate = function(models) {
     // associations can be defined here
