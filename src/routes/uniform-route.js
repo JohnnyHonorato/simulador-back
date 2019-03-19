@@ -35,7 +35,7 @@ export default (app) => {
                     res.json(response.data);
                 });
         })
-    app.route('/uniforms/mockups/:id')
+    app.route('/uniforms/:id/mockups')
         .get((req, res) => {
             uniformController.getByMockup(req.params)
                 .then(response => {
@@ -43,4 +43,13 @@ export default (app) => {
                     res.json(response.data);
                 });
         })
+    
+    app.route('/uniforms/:page')
+    .get((req, res) => {
+        uniformController.getPaginator(req.params)
+            .then(response => {
+                res.status(response.statusCode);
+                res.json(response.data);
+            });
+    })
 };

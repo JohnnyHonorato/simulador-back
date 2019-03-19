@@ -40,18 +40,39 @@ class UniformController {
     return this.Uniform.destroy({
       where: params,
     })
-    .then(result => defaultResponse(result, HttpStatus.NO_CONTENT))
-    .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
+      .then(result => defaultResponse(result, HttpStatus.NO_CONTENT))
+      .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
   }
 
   getByMockup(params) {
     return this.Uniform.findAll({
-    where: {
+      where: {
         mockup_id: params.id,
-        }
+      }
     })
-    .then(result => defaultResponse(result))
-    .catch(error => errorResponse(error.message));
+      .then(result => defaultResponse(result))
+      .catch(error => errorResponse(error.message));
+  }
+
+  getPaginator(params) {
+
+    var perPage = 9
+    var page = req.params.page || 1
+
+    Uniform
+      .find({})
+      .skip((perPage * page) - perPage)
+      .limit(perPage)
+      .exec(function (err, uniforms) {
+        Uniform.count().exec(function (err, count) {
+          if (err) return next(err)
+          res.render('main/uniforms', {
+            uniforms: uniforms,
+            current: page,
+            pages: Math.ceil(count / perPage)
+          })
+        })
+      })
   }
 }
 

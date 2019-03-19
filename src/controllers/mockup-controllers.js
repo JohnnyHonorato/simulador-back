@@ -43,6 +43,8 @@ class MockupController {
     .then(result => defaultResponse(result, HttpStatus.NO_CONTENT))
     .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
   }
+
+  
 }
 
 export default MockupController;
