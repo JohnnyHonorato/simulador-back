@@ -12,6 +12,33 @@ module.exports = (sequelize, DataTypes) => {
       },
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
+    },
+    shirt_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Mockups', // name of Source model
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+    },
+    Sock_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Mockups', // name of Source model
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+    },
+    short_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Mockups', // name of Source model
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
     }
   }, {});
 

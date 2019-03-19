@@ -1,6 +1,7 @@
 'use strict';
 import HttpStatus from 'http-status';
 import db from '../models/index';
+import bcrypt from 'bcrypt';
 
 const defaultResponse = (data, statusCode = HttpStatus.OK) => ({
   data,
@@ -11,19 +12,19 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
   error: message,
 }, statusCode);
 
-class UniformController {
+class UserController {
   constructor() {
-    this.Uniform = db.Uniform;
+    this.User = db.User;
   }
 
   getAll() {
-    return this.Uniform.findAll({})
+    return this.User.findAll({})
       .then(result => defaultResponse(result))
       .catch(error => errorResponse(error.message));
   }
 
   getById(params) {
-    return this.Uniform.findOne({
+    return this.User.findOne({
       where: params,
     })
       .then(result => defaultResponse(result))
@@ -31,49 +32,24 @@ class UniformController {
   }
 
   add(data) {
-    return this.Uniform.create(data)
+    let login = data.login;
+    let password = data.password;
+    let role = data.role;
+    
+    return bcrypt.hash(data.password, 12).then((result) => {
+      this.User.create({login:login, password:result, role:role})
+    })
       .then(result => defaultResponse(result, HttpStatus.CREATED))
       .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
   }
 
   delete(params) {
-    return this.Uniform.destroy({
-      where: params,
+    return this.User.destroy({
+      where: {id: params.id},
     })
       .then(result => defaultResponse(result, HttpStatus.NO_CONTENT))
       .catch(error => errorResponse(error.message, HttpStatus.UNPROCESSABLE_ENTITY));
   }
-
-  getByMockup(params) {
-    return this.Uniform.findAll({
-      where: {
-        mockup_id: params.id,
-      }
-    })
-      .then(result => defaultResponse(result))
-      .catch(error => errorResponse(error.message));
-  }
-
-  getPaginator(params) {
-
-    var perPage = 9
-    var page = params.page || 1
-
-    Uniform
-      .find({})
-      .skip((perPage * page) - perPage)
-      .limit(perPage)
-      .exec(function (err, uniforms) {
-        Uniform.count().exec(function (err, count) {
-          if (err) return next(err)
-          res.render('/uniforms', {
-            uniforms: uniforms,
-            current: page,
-            pages: Math.ceil(count / perPage)
-          })
-        })
-      })
-  }
 }
 
-export default UniformController;
+export default UserController;
