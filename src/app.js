@@ -16,6 +16,7 @@ import indexRoutes from './routes/index-route'
 import MockupRoutes from './routes/mockup-route'
 import SockRoutes from './routes/sock-route'
 import ShortRoutes from './routes/short-route'
+import ShirtRoutes from './routes/shirt-route'
 import UniformRoutes from './routes/uniform-route'
 
 app.use(bodyParser.json());
@@ -27,6 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 MockupRoutes(app);
 SockRoutes(app);
 ShortRoutes(app);
+ShirtRoutes(app);
 UniformRoutes(app);
+
 
 export default app;
