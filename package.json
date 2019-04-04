@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon bin/start.js",
+    "start": "nodemon dist/bin/start.js",
     "build": "babel src -d dist --presets es2015",
     "watch": "babel src -w -d dist --presets es2015"
   },
@@ -14,6 +14,7 @@
   "dependencies": {
     "bcrypt": "^3.0.5",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "http": "0.0.0",
